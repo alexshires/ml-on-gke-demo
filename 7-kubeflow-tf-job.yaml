@@ -1,0 +1,46 @@
+# https://kueue.sigs.k8s.io/docs/tasks/run/kubeflow/tfjobs/
+apiVersion: kubeflow.org/v1
+kind: TFJob
+metadata:
+  generateName: tensorflow-dist-mnist-
+  # namespace: default
+  namespace: test-team-1
+  labels:
+    # kueue.x-k8s.io/queue-name: dws-local-queue
+    kueue.x-k8s.io/queue-name: lq-team-1 # normal queue
+spec:
+  runPolicy:
+    suspend: true
+  tfReplicaSpecs:
+    PS:
+      replicas: 1
+      restartPolicy: Never
+      template:
+        spec:
+          # nodeSelector:
+          #  # Specify the GPU hardware - https://cloud.google.com/compute/docs/gpus#l4-gpus
+          #  cloud.google.com/gke-accelerator: nvidia-l4
+          # cloud.google.com/gke-nodepool: dws-pool-3
+          containers:
+          - name: tensorflow
+            image: kubeflow/tf-dist-mnist-test:latest
+            resources:
+              requests:
+                cpu: 1
+                memory: "200Mi"
+    Worker:
+      replicas: 2
+      restartPolicy: Never
+      template:
+        spec:
+          # nodeSelector:
+          #  # Specify the GPU hardware - https://cloud.google.com/compute/docs/gpus#l4-gpus
+          #  cloud.google.com/gke-accelerator: nvidia-l4
+          # cloud.google.com/gke-nodepool: dws-pool-3
+          containers:
+          - name: tensorflow
+            image: kubeflow/tf-dist-mnist-test:latest
+            resources:
+              requests:
+                cpu: 1
+                memory: "200Mi"
