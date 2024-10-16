@@ -5,14 +5,14 @@ Here goes....
 
 ### Step 0: High level configuration
 ```
-PROJECT=ashires-joonix-test-1
-CLUSTER_NAME=ray-test-cluster-3
-ZONE=us-central1-b
-NETWORK=data-vpc
-SUBNETWORK=us-dev
-GPU_POOL="gpu-pool-2"
-DWS_POOL="dws-pool-3"
-WORKLOAD_IDENTITY_STR="ashires-joonix-test-1.svc.id.goog"
+PROJECT=
+CLUSTER_NAME=
+ZONE=
+NETWORK=
+SUBNETWORK=
+GPU_POOL=
+DWS_POOL=
+WORKLOAD_IDENTITY_STR=
 ```
 TODO: setup workload identity and create workload identity pool for GCSFUSE
 
