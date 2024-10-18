@@ -13,7 +13,8 @@ spec:
   template:
     spec:
       nodeSelector:
-        cloud.google.com/gke-accelerator: "nvidia-tesla-t4" # Specify the GPU hardware
+        # cloud.google.com/gke-accelerator: "nvidia-tesla-t4" # Specify the GPU hardware
+        cloud.google.com/gke-accelerator: nvidia-l4
       containers:
       - name: dummy-job
         image: gcr.io/k8s-staging-perf-tests/sleep:latest
